@@ -15,13 +15,21 @@
     <div id="map"></div>
     <script>
 
+
+
+
 function initMap() {
   // The location of newyorkcenter
-  var newyorkcenter = {lat: 40.697362, lng: -73.979710}; //40.697362, -73.979710
-  var precinct14 = {lat: 40.753888, lng: -73.994894}; //40.753888, -73.994894
-  var mostdanger = "FF0000"
-  var leastdanger = "000000"
-  var coordsmidtownsouth = [
+  let newyorkcenter = {lat: 40.697362, lng: -73.979710}; //40.697362, -73.979710
+  let precinct14 = {lat: 40.753888, lng: -73.994894}; //40.753888, -73.994894
+  let mostdanger = "ff0000"
+  let almostdanger = "ffa500"
+  let leastalmostdanger = "ffff00"
+  let leastdanger = "008000"
+  let nodanger = "0000ff"
+
+
+  var coordsmidtownsouth = [ //0.1453 Murders per 1,000 residents pop 20651
     {lat: 40.750271, lng: -73.998647},
     {lat: 40.760368, lng: -73.991224},
     {lat: 40.753383, lng: -73.974659},
@@ -31,23 +39,37 @@ function initMap() {
     {lat: 40.746369, lng: -73.979728},
     {lat: 40.743260, lng: -73.981990}
   ];
-  var coordscentralpark = [
+  var coordscentralpark = [ //40 Murders per 1000 residents pop 25
     {lat: 40.768067, lng: -73.981890},
     {lat: 40.800597, lng: -73.958199},
     {lat: 40.796880, lng: -73.949248},
     {lat: 40.764312, lng: -73.973008},
   ];
-/* These are just placeholders so sit tight will ya?
-var coords1h = [
-  {lat: 40.750271, lng: -73.998647},
-  {lat: 40.760368, lng: -73.991224},
-  {lat: 40.753383, lng: -73.974659},
-  {lat: 40.750159, lng: -73.976984},
-  {lat: 40.751541, lng: -73.980199},
-  {lat: 40.747764, lng: -73.982951},
-  {lat: 40.746369, lng: -73.979728},
-  {lat: 40.743260, lng: -73.981990}
-];
+  var coords1h = [ // 0.15 Murders per 1000 residents pop 66679
+    {lat: 40.708165, lng: -74.018823},
+    {lat: 40.718684, lng: -74.016693},
+    {lat: 40.718373, lng: -74.013243},
+    {lat: 40.729166, lng: -74.011287},
+    {lat: 40.728354, lng: -74.002817},
+    {lat: 40.725438, lng: -73.996764},
+    {lat: 40.714183, lng: -74.006303},
+    {lat: 40.713132, lng: -74.004086},
+    {lat: 40.712162, lng: -74.005323},
+    {lat: 40.711899, lng: -74.004986},
+    {lat: 40.707674, lng: -73.999924},
+    {lat: 40.701934, lng: -74.009294},
+    {lat: 40.701220, lng: -74.012247},
+    {lat: 40.701178, lng: -74.014593},
+    {lat: 40.702154, lng: -74.016578},
+    {lat: 40.703407, lng: -74.017662},
+    {lat: 40.704822, lng: -74.019014},
+    {lat: 40.706262, lng: -74.019379},
+    {lat: 40.708035, lng: -74.018832}
+  ];
+/*
+//These are just placeholders so sit tight will ya?
+
+
 var coords5th = [
   {lat: 40.750271, lng: -73.998647},
   {lat: 40.760368, lng: -73.991224},
@@ -58,16 +80,20 @@ var coords5th = [
   {lat: 40.746369, lng: -73.979728},
   {lat: 40.743260, lng: -73.981990}
 ];
-var coords6th = [
-  {lat: 40.750271, lng: -73.998647},
-  {lat: 40.760368, lng: -73.991224},
-  {lat: 40.753383, lng: -73.974659},
-  {lat: 40.750159, lng: -73.976984},
-  {lat: 40.751541, lng: -73.980199},
-  {lat: 40.747764, lng: -73.982951},
-  {lat: 40.746369, lng: -73.979728},
-  {lat: 40.743260, lng: -73.981990}
+*/
+var coords6th = [ // 0 Murders per 1000 residents pop 62,226
+  {lat: 40.729134, lng:-74.010651},
+  {lat: 40.728342, lng: -74.002639},
+  {lat: 40.725440, lng: -73.996793},
+  {lat: 40.731723, lng: -73.991475},
+  {lat: 40.734436, lng: -73.989901},
+  {lat: 40.742281, lng: -74.009187},
+  {lat: 40.740655, lng: -74.009663},
+  {lat: 40.739048, lng: -74.010439},
+  {lat: 40.729194, lng: -74.011224}
+
 ];
+/*
 var coords7th = [
   {lat: 40.750271, lng: -73.998647},
   {lat: 40.760368, lng: -73.991224},
@@ -245,11 +271,26 @@ var coords33th = [
       document.getElementById('map'), {zoom: 12, center: newyorkcenter});
   // The marker, positioned at 14 Precinct, Sector A
 
-  var InfoWindow = new google.maps.InfoWindow({position: precinct14, map: map, content: '14 Precinct, Sector A'});
+  var precinctmidsouthth = new google.maps.InfoWindow({position: precinct14, map: map, content: '14 Precinct 0.1453 Murders per 1,000 residents pop 20,651'});
+  var precinct1 = new google.maps.InfoWindow({position: {lat: 40.720359, lng: -74.006975}, map: map, content: '1 Precinct 0.15 Murders per 1000 residents pop 66,679'});
+  var precinctcentral = new google.maps.InfoWindow({position: {lat: 40.783318, lng: -73.964372}, map: map, content: 'Central Park Precinct 40 Murders per 1000 residents pop 25'});
+  var precinct6 = new google.maps.InfoWindow({position: {lat: 40.733994, lng: -74.005434}, map: map, content: '6 Precinct 0 Murders per 1000 residents pop 62,226'});
 
-  var poly14th = new google.maps.Polygon({
+  
+  var polysmidtownsouth = new google.maps.Polygon({
     paths: coordsmidtownsouth,
-    strokeColor: mostdanger,
+    strokeColor: leastalmostdanger,
+    strokeOpacity: 1,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    fillOpacity: 0.35,
+    geodesic: true,
+    map: map
+  });
+
+  var poly1h = new google.maps.Polygon({
+    paths: coords1h,
+    strokeColor: almostdanger,
     strokeOpacity: 1,
     strokeWeight: 2,
     fillColor: '#FF0000',
@@ -260,10 +301,21 @@ var coords33th = [
 
   var polycentral = new google.maps.Polygon({
     paths: coordscentralpark,
-    strokeColor: leastdanger,
+    strokeColor: mostdanger,
     strokeOpacity: 1,
     strokeWeight: 2,
-    fillColor: '#FF0000',
+    fillColor: "0",
+    fillOpacity: 0.35,
+    geodesic: true,
+    map: map
+  });
+
+  var poly6th = new google.maps.Polygon({
+    paths: coords6th,
+    strokeColor: nodanger,
+    strokeOpacity: 1,
+    strokeWeight: 2,
+    fillColor: '0',
     fillOpacity: 0.35,
     geodesic: true,
     map: map
@@ -272,8 +324,7 @@ var coords33th = [
 }
     </script>
 
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk7PFab2hrN4Gu0Nw4IFnBdwREdi3qneA&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk7PFab2hrN4Gu0Nw4IFnBdwREdi3qneA&callback=initMap">
     </script>
   </body>
 </html>
