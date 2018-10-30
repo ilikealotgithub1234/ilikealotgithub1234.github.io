@@ -31,13 +31,13 @@
 
         window.eqfeed_callback = function(results) { //adds precinct borders
           console.log(results)
-          for (var i = 0; i < results.features.length; i++) {
-            var coords = results.features[i].geometry.coordinates;
-            var latLng = new google.maps.LatLng(coords[1],coords[0]);
-            var infowindow = new google.maps.InfoWindow({
+          for (let i = 0; i < results.features.length; i++) {
+            let coords = results.features[i].geometry.coordinates;
+            let latLng = new google.maps.LatLng(coords[1],coords[0]);
+            let infowindow = new google.maps.InfoWindow({
               content: "results.features[i].properties.precinct"
             });
-            var marker = new google.maps.Marker({
+            let marker = new google.maps.Marker({
               position: latLng,
               map: map
             }).addListener('click', function() {
@@ -51,15 +51,20 @@
           strokeWeight: 1
         });
 
-        var precinctmidsouthth = new google.maps.InfoWindow({position: {lat: 40.753888, lng: -73.994894}, map: map, content: '14 Precinct 0.1453 Murders per 1,000 residents pop 20,651'});
-        var precinct1 = new google.maps.InfoWindow({position: {lat: 40.720359, lng: -74.006975}, map: map, content: '1 Precinct 0.15 Murders per 1000 residents pop 66,679'});
-        var precinctcentral = new google.maps.InfoWindow({position: {lat: 40.783318, lng: -73.964372}, map: map, content: 'Central Park Precinct 40 Murders per 1000 residents pop 25'});
-        var precinct6 = new google.maps.InfoWindow({position: {lat: 40.733994, lng: -74.005434}, map: map, content: '6 Precinct 0 Murders per 1000 residents pop 62,226'});
-        var precinct7 = new google.maps.InfoWindow({position: {lat: 40.716407, lng: -73.983923}, map: map, content: '6 Precinct 0 Murders per 1000 residents pop 62,226'});
-        var precinct9 = new google.maps.InfoWindow({position: {lat: 40.726564, lng: -73.987824}, map: map, content: '6 Precinct 0 Murders per 1000 residents pop 62,226'});
-        var precinct10 = new google.maps.InfoWindow({position: {lat: 40.742706, lng: -73.998636}, map: map, content: '6 Precinct 0 Murders per 1000 residents pop 62,226'});
-        var precinct13 = new google.maps.InfoWindow({position: {lat: 40.736735, lng: -73.982697}, map: map, content: '6 Precinct 0 Murders per 1000 residents pop 62,226'});
-        var precinct17 = new google.maps.InfoWindow({position: {lat: 40.756756, lng: -73.970782}, map: map, content: '6 Precinct 0 Murders per 1000 residents pop 62,226'});
+        let precinctmidsouth = new google.maps.InfoWindow({position: {lat: 40.753888, lng: -73.994894}, map: map, content: '14 Precinct 0.1453 Murders per 1,000 residents pop 20,651'});
+        let precinct1 = new google.maps.InfoWindow({position: {lat: 40.720359, lng: -74.006975}, map: map, content: '1 Precinct 0.15 Murders per 1000 residents pop 66,679'});
+        let precinctcentral = new google.maps.InfoWindow({position: {lat: 40.783318, lng: -73.964372}, map: map, content: 'Central Park Precinct 40 Murders per 1000 residents pop 25'});
+        let precinct6 = new google.maps.InfoWindow({position: {lat: 40.733994, lng: -74.005434}, map: map, content: '6 Precinct 0 Murders per 1000 residents pop 62'});
+        let precinct7 = new google.maps.InfoWindow({position: {lat: 40.716407, lng: -73.983923}, map: map, content: 'X Precinct X Murders per 1000 residents pop X'});
+        let precinct9 = new google.maps.InfoWindow({position: {lat: 40.726564, lng: -73.987824}, map: map, content: 'X Precinct X Murders per 1000 residents pop X'});
+        let precinct10 = new google.maps.InfoWindow({position: {lat: 40.742706, lng: -73.998636}, map: map, content: 'X Precinct X Murders per 1000 residents pop X'});
+        let precinct13 = new google.maps.InfoWindow({position: {lat: 40.736735, lng: -73.982697}, map: map, content: 'X Precinct X Murders per 1000 residents pop X'});
+        let precinct17 = new google.maps.InfoWindow({position: {lat: 40.756756, lng: -73.970782}, map: map, content: 'X Precinct X Murders per 1000 residents pop X'});
+        let precinctmidnorth = new google.maps.InfoWindow({position: {lat: 40.765056, lng: -73.985326}, map: map, content: 'X Precinct X Murders per 1000 residents pop X'});
+        let precinct19 = new google.maps.InfoWindow({position: {lat: 40.767156, lng: -73.963828}, map: map, content: 'X Precinct X Murders per 1000 residents pop X'});
+        let precinct20 = new google.maps.InfoWindow({position: {lat: 40.784179, lng: -73.974990}, map: map, content: 'X Precinct X Murders per 1000 residents pop X'});
+        let precinctcpp = new google.maps.InfoWindow({position: {lat: 40.783201, lng: -73.964394}, map: map, content: 'X Precinct X Murders per 1000 residents pop X'});
+        let precinct23 = new google.maps.InfoWindow({position: {lat: 40.789059, lng: -\73.947079}, map: map, content: 'X Precinct X Murders per 1000 residents pop X'});
 
 
 /* THINGS TO ADD
@@ -74,7 +79,7 @@
 */
 
       }
-  //  var precinctmidsouthth = new google.maps.InfoWindow({position: precinct14, map: map, content: '14 Precinct 0.1453 Murders per 1,000 residents pop 20,651'});
+  //  let precinctmidsouthth = new google.maps.InfoWindow({position: precinct14, map: map, content: '14 Precinct 0.1453 Murders per 1,000 residents pop 20,651'});
 
     </script>
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk7PFab2hrN4Gu0Nw4IFnBdwREdi3qneA&callback=initMap">
